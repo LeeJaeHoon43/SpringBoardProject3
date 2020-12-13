@@ -12,7 +12,7 @@ import com.ljh.mypage.domain.ArticleVO;
 @Repository
 public class ArticleDAOImpl implements ArticleDAO{
 	
-	private static final String NAMESPACE = "com.ljh.mypage.mappers.article.ArticleMapper";
+	private static final String NAMESPACE = "com.ljh.mypage.mappers.article.articleMapper";
 	
 	private final SqlSession sqlSession;
 	

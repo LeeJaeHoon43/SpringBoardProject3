@@ -21,32 +21,26 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Override
 	public void create(ArticleVO articleVO) throws Exception {
-		// TODO Auto-generated method stub
-		
+		articleDAO.create(articleVO);
 	}
 
 	@Override
 	public ArticleVO read(Integer articleNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return articleDAO.read(articleNo);
 	}
 
 	@Override
 	public void update(ArticleVO articleVO) throws Exception {
-		// TODO Auto-generated method stub
-		
+		articleDAO.update(articleVO);
 	}
 
 	@Override
 	public void delete(Integer articleNo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		articleDAO.delete(articleNo);
 	}
 
 	@Override
 	public List<ArticleVO> listAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return articleDAO.listAll();
 	}
-
 }
