@@ -2,6 +2,7 @@ package com.ljh.mypage.service;
 
 import java.util.List;
 
+import com.ljh.mypage.commons.paging.Criteria;
 import com.ljh.mypage.domain.ArticleVO;
 
 public interface ArticleService {
@@ -10,4 +11,6 @@ public interface ArticleService {
 	public void update(ArticleVO articleVO) throws Exception;
 	public void delete(Integer articleNo) throws Exception;
 	public List<ArticleVO> listAll() throws Exception;
+	public List<ArticleVO> listCriteria(Criteria criteria) throws Exception;
+	public int countArticles(Criteria criteria) throws Exception;
 }

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.ljh.mypage.commons.paging.Criteria;
 import com.ljh.mypage.domain.ArticleVO;
 
 @Repository
@@ -44,5 +45,15 @@ public class ArticleDAOImpl implements ArticleDAO{
 	@Override
 	public List<ArticleVO> listAll() throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".listAll");
+	}
+
+	@Override
+	public List<ArticleVO> listCriteria(Criteria criteria) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".listCriteria", criteria);
+	}
+
+	@Override
+	public int countArticles(Criteria criteria) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".countArticles", criteria);
 	}
 }

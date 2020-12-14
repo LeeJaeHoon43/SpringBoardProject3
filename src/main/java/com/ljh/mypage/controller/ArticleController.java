@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.ljh.mypage.commons.paging.Criteria;
+import com.ljh.mypage.commons.paging.PageMaker;
 import com.ljh.mypage.domain.ArticleVO;
 import com.ljh.mypage.service.ArticleService;
 
@@ -83,4 +86,17 @@ public class ArticleController {
 		redirectAttributes.addFlashAttribute("msg", "delSuccess");
 		return "redirect:/article/list";
 	}	
+	
+	// 페이징 목록.
+	@RequestMapping(value = "/listPaging", method = RequestMethod.GET)
+	public String listPaging(Model model, Criteria criteria)throws Exception{
+		logger.info("listPaging");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(articleService.countArticles(criteria));
+		model.addAttribute("articles", articleService.listCriteria(criteria));
+		model.addAttribute("pageMaker", pageMaker);
+		return "/article/list_paging";
+	}
 }
