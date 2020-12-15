@@ -46,9 +46,9 @@
 							<div class="card-header">
 								<h3 class="card-title">게시글 목록</h3>
 							</div>
-							<div class="card-body">
-								<table class="table table-bordered">
-									<tbody>
+							<div class="card-body table-responsive p-0">
+								<table class="table table-hover">
+									<thead>
 										<tr>
 											<th style="width: 30px">#</th>
 											<th>제목</th>
@@ -56,41 +56,21 @@
 											<th style="width: 150px">작성시간</th>
 											<th style="width: 60px">조회</th>
 										</tr>
+									</thead>
+									<tbody>
 										<c:forEach items="${articles}" var="article">
 											<tr>
 												<td>${article.articleNo}</td>
-												<td><a
-													href="${path}/article/read?articleNo=${article.articleNo}">${article.title}</a></td>
+												<td><a href="${path}/article/read${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${article.articleNo}">${article.title}</a></td>
 												<td>${article.writer}</td>
-												<td><fmt:formatDate value="${article.regDate}"
-														pattern="yyyy-MM-dd a HH:mm" /></td>
-												<td><span class="badge bg-red">${article.viewCnt}</span></td>
+												<td><fmt:formatDate value="${article.regDate}" pattern="yyyy-MM-dd" /></td>
+												<td><span class="badge bg-success">${article.viewCnt}</span></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
 							<div class="card-footer">
-								<nav aria-label="Contacts Page Navigation">
-									<ul class="pagination justify-content-center m-0">
-										<c:if test="${pageMaker.prev}">
-											<li class="page-item"><a class="page-link"
-												href="${path}/article/listPaging?page=${pageMaker.startPage - 1}">이전</a></li>
-										</c:if>
-										<c:forEach begin="${pageMaker.startPage}"
-											end="${pageMaker.endPage}" var="idx">
-											<li class="page-item"
-												<c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
-												<a class="page-link"
-												href="${path}/article/listPaging?page=${idx}">${idx}</a>
-											</li>
-										</c:forEach>
-										<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-											<li class="page-item"><a class="page-link"
-												href="${path}/article/listPaging?page=${pageMaker.endPage + 1}">다음</a></li>
-										</c:if>
-									</ul>
-								</nav>
 								<div class="float-right">
 									<button type="button" class="btn btn-success btn-flat"
 										id="writeBtn">
@@ -98,11 +78,33 @@
 									</button>
 								</div>
 							</div>
+							<div class="card-footer">
+								<nav aria-label="Contacts Page Navigation">
+									<ul class="pagination justify-content-center m-0">
+										<c:if test="${pageMaker.prev}">
+											<li class="page-item"><a class="page-link"
+												href="${path}/article/listPaging${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+										</c:if>
+										<c:forEach begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage}" var="idx">
+											<li class="page-item"
+												<c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
+												<a class="page-link"
+												href="${path}/article/listPaging${pageMaker.makeQuery(idx)}">${idx}</a>
+											</li>
+										</c:forEach>
+										<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+											<li class="page-item"><a class="page-link"
+												href="${path}/article/listPaging?${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
 						</div>
 					</div>
 				</div>
+				<!-- /.container-fluid -->
 			</div>
-			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
 
