@@ -3,16 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../../include/head.jsp"%>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 
 		<!-- Navbar -->
-		<%@ include file="../include/main_header.jsp"%>
+		<%@ include file="../../include/main_header.jsp"%>
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
-		<%@ include file="../include/left_column.jsp"%>
+		<%@ include file="../../include/left_column.jsp"%>
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -42,8 +42,7 @@
 			<div class="content">
 				<div class="container-fluid">
 					<div class="col-lg-12">
-						<form role="form" id="writeForm" method="post"
-							action="${path}/article/modify">
+						<form role="form" id="writeForm" method="post" action="${path}/article/paging/modify">
 							<div class="card">
 								<div class="card-header">
 									<h3 class="card-title">게시글 작성</h3>
@@ -96,12 +95,12 @@
 		<!-- /.control-sidebar -->
 
 		<!-- Main Footer -->
-		<%@ include file="../include/main_footer.jsp"%>
+		<%@ include file="../../include/main_footer.jsp"%>
 	</div>
 	<!-- ./wrapper -->
 
 	<!-- REQUIRED SCRIPTS -->
-	<%@ include file="../include/plugin_js.jsp"%>
+	<%@ include file="../../include/plugin_js.jsp"%>
 </body>
 <script type="text/javascript">
 $(document).ready(function () { 
@@ -117,7 +116,7 @@ $(document).ready(function () {
 	}); 
 	
 	$(".listBtn").on("click", function () { 
-		self.location = "${path}/article/list";
+		self.location = "${path}/article/paging/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}";
 	}); 
 });
 </script>

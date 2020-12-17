@@ -27,13 +27,13 @@
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column"
 				data-widget="treeview" role="menu" data-accordion="false">
-				<li class="nav-item has-treeview menu-open"><a href="#"
-					class="nav-link active"> <i
-						class="nav-icon fas fa-tachometer-alt"></i>
+				<li class="nav-item has-treeview menu-open">
+					<a href="#" class="nav-link active"> 
+						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
-							Starter Pages <i class="right fas fa-angle-left"></i>
+							Basic CRUD Board<i class="right fas fa-angle-left"></i>
 						</p>
-				</a>
+					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item"><a href="${path}/article/write"
 							class="nav-link active"> <i class="far fa-circle nav-icon"></i>
@@ -43,18 +43,27 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>List Page</p>
 						</a></li>
-					</ul></li>
-				<!-- List Paging 목록 버튼 추가 -->
-				<li class="nav-item"><a href="${path}/article/listPaging"
-					class="nav-link"> <i class="far fa-circle nav-icon"></i>
-						<p>List Paging Page</p>
-				</a></li>
-				<li class="nav-item"><a href="#" class="nav-link"> <i
-						class="nav-icon fas fa-th"></i>
+					</ul>
+				</li>
+				<li class="nav-item has-treeview menu-open">
+					<a href="#" class="nav-link active"> 
+						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
-							Simple Link <span class="right badge badge-danger">New</span>
+							Paging CRUD Board<i class="right fas fa-angle-left"></i>
 						</p>
-				</a></li>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="${path}/article/paging/write" class="nav-link active"> 
+							<i class="far fa-circle nav-icon"></i><p>Write Page</p>
+						</a></li>
+						<li class="nav-item">
+							<a href="${path}/article/paging/list" class="nav-link"> 
+								<i class="far fa-circle nav-icon"></i><p>List Paging Page</p>
+							</a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
