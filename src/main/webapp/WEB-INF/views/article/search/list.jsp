@@ -59,7 +59,9 @@
 										<c:forEach items="${articles}" var="article">
 											<tr>
 												<td>${article.articleNo}</td>
-												<td><a href="${path}/article/paging/read${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${article.articleNo}">${article.title}</a></td>
+												<td>
+													<a href="${path}/article/paging/search/read${pageMaker.makeSearch(pageMaker.criteria.page)}&articleNo=${article.articleNo}">${article.title}</a>
+												</td>
 												<td>${article.writer}</td>
 												<td><fmt:formatDate value="${article.regDate}"
 														pattern="yyyy-MM-dd a HH:mm" /></td>
@@ -74,25 +76,60 @@
 									<ul class="pagination justify-content-center m-0">
 										<c:if test="${pageMaker.prev}">
 											<li class="page-item">
-												<a class="page-link" href="${path}/article/paging/list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a>
+												<a class="page-link" href="${path}/article/paging/search/list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a>
 											</li>
 										</c:if>
 										<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 											<li class="page-item" <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
-												<a class="page-link" href="${path}/article/paging/list${pageMaker.makeQuery(idx)}">${idx}</a>
+												<a class="page-link" href="${path}/article/paging/search/list${pageMaker.makeSearch(idx)}">${idx}</a>
 											</li>
 										</c:forEach>
 										<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 											<li class="page-item">
-												<a class="page-link" href="${path}/article/paging/list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a>
+												<a class="page-link" href="${path}/article/paging/search/list?${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a>
 											</li>
 										</c:if>
 									</ul>
 								</nav>
+								<br>
+								<div class="row">
+									<div class="form-group col-sm-2">
+										<select class="form-control" name="searchType" id="searchType">
+											<option value="n"
+												<c:out value="${searchCriteria.searchType == null ? 'selected' : ''}"/>>::::::선택
+												::::::</option>
+											<option value="t"
+												<c:out value="${searchCriteria.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+											<option value="c"
+												<c:out value="${searchCriteria.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+											<option value="w"
+												<c:out value="${searchCriteria.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+											<option value="tc"
+												<c:out value="${searchCriteria.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+											<option value="cw"
+												<c:out value="${searchCriteria.searchType eq 'cw' ? 'selected' : ''}"/>>내용+작성자</option>
+											<option value="tcw"
+												<c:out value="${searchCriteria.searchType eq 'tcw' ? 'selected' : ''}"/>>제목+내용+작성자</option>
+										</select>
+									</div>
+									<div class="form-group col-sm-10">
+										<div class="input-group">
+											<input type="text" class="form-control" name="keyword"
+												id="keywordInput" value="${searchCriteria.keyword}"
+												placeholder="검색어"> <span class="input-group-btn">
+												<button type="button" class="btn btn-primary btn-flat"
+													id="searchBtn">
+													<i class="fa fa-search"></i> 검색
+												</button>
+											</span>
+										</div>
+									</div>
+								</div>
+
 								<div class="float-right">
 									<button type="button" class="btn btn-success btn-flat"
 										id="writeBtn">
-										<i class="fa fa-pencil"></i> 글쓰기
+										<i class="fa fa-pencil"></i>글쓰기
 									</button>
 								</div>
 							</div>
@@ -123,19 +160,19 @@
 	<%@ include file="../../include/plugin_js.jsp"%>
 </body>
 <script type="text/javascript">
-	var result = "${msg}"; 
-	if (result == "regSuccess") { 
-		alert("게시글 등록이 완료되었습니다."); 
-	} else if (result == "modSuccess") { 
-		alert("게시글 수정이 완료되었습니다."); 
-	} else if (result == "delSuccess") { 
-		alert("게시글 삭제가 완료되었습니다."); 
+	var result = "${msg}";
+	if (result == "regSuccess") {
+		alert("게시글 등록이 완료되었습니다.");
+	} else if (result == "modSuccess") {
+		alert("게시글 수정이 완료되었습니다.");
+	} else if (result == "delSuccess") {
+		alert("게시글 삭제가 완료되었습니다.");
 	}
-	
-	 $(document).ready(function () {
-	    $("#writeBtn").on("click", function () {
-	       self.location = "${path}/article/paging/write";
-	 	});
-	 });
+
+	$(document).ready(function() {
+		$("#writeBtn").on("click", function() {
+			self.location = "${path}/article/paging/search/list${pageMaker.makeQuery(1)}" + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($("#keywordInput").val());
+		});
+	});
 </script>
 </html>
