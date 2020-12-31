@@ -61,6 +61,7 @@
 												<td>${article.articleNo}</td>
 												<td>
 													<a href="${path}/article/paging/search/read${pageMaker.makeSearch(pageMaker.criteria.page)}&articleNo=${article.articleNo}">${article.title}</a>
+													<span class="badge bg-teal"><i class="fas fa-comment"></i> + ${article.replyCnt}</span>
 												</td>
 												<td>${article.writer}</td>
 												<td><fmt:formatDate value="${article.regDate}"
@@ -171,7 +172,7 @@
 
 	$(document).ready(function() {
 		$("#writeBtn").on("click", function() {
-			self.location = "${path}/article/paging/search/list${pageMaker.makeQuery(1)}" + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($("#keywordInput").val());
+			self.location = "${path}/article/paging/search/write";
 		});
 	});
 </script>

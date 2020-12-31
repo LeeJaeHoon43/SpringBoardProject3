@@ -9,6 +9,7 @@ public class ArticleVO {
 	private String writer; 
 	private Date regDate; 
 	private int viewCnt;
+	private int replyCnt;
 	
 	public Integer getArticleNo() {
 		return articleNo;
@@ -46,9 +47,15 @@ public class ArticleVO {
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
 	@Override
 	public String toString() {
-		return "ArticleVO [articleNo=" + articleNo + ", title=" + title + ", content=" + content + ", writer="
-				+ writer + ", regDate=" + regDate + ", viewCnt=" + viewCnt + "]";
+		return "ArticleVO [articleNo=" + articleNo + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", replyCnt=" + replyCnt + "]";
 	}
 }

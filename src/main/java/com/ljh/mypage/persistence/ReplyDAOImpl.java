@@ -12,7 +12,7 @@ import com.ljh.mypage.domain.ReplyVO;
 @Repository
 public class ReplyDAOImpl implements ReplyDAO{
 	
-	private static String NAMESPACE = "com.ljh.mypage.mappers.reply.ReplyMapper";
+	private static String NAMESPACE = "com.ljh.mypage.mappers.reply.replyMapper";
 	
 	private final SqlSession sqlSession;
 	
@@ -53,4 +53,9 @@ public class ReplyDAOImpl implements ReplyDAO{
 	public int countReplies(Integer articleNo) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".countReplies", articleNo);
 	}
+
+	@Override
+	public int getArticleNo(Integer replyNo) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getArticleNo", replyNo);
+	}	
 }

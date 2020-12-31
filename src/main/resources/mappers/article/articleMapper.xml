@@ -88,7 +88,7 @@
 	<select id="listSearch" resultMap="ArticleResultMap">
 		<![CDATA[
 			SELECT
-				article_no, title, content, writer, regdate, viewcnt 
+				article_no, title, content, writer, regdate, viewcnt, reply_cnt
 			FROM tb_article 
 			WHERE article_no > 0
 		]]>
@@ -99,6 +99,12 @@
 		]]>
 	</select>
 	
+	<update id="updateReplyCnt">
+		UPDATE tb_article
+		SET reply_cnt = reply_cnt + #{amount}
+		WHERE article_no = #{articleNo}
+	</update>
+	
 	<select id="countSearchedArticles" resultType="int">
 		<![CDATA[
 			SELECT
@@ -108,6 +114,12 @@
 		]]>
 		<include refid="search"/>
 	</select>
+	
+	<update id="updateViewCnt">
+		UPDATE tb_article
+		SET viewcnt = viewcnt + 1
+		WHERE article_no = #{articleNo}
+	</update>
 	
 	<sql id="search">
 		<if test="searchType != null">
@@ -143,6 +155,7 @@
 		<result property="writer" column="writer" /> 
 		<result property="regDate" column="regdate" /> 
 		<result property="viewCnt" column="viewcnt" /> 
+		<result property="replyCnt" column="reply_cnt"/>
 	</resultMap>
 
 </mapper>

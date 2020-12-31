@@ -12,4 +12,5 @@ public interface ReplyDAO {
 	public void delete(Integer replyNo) throws Exception;
 	public List<ReplyVO> listPaging(Integer articleNo, Criteria criteria) throws Exception; 
 	public int countReplies(Integer articleNo) throws Exception;
+	public int getArticleNo(Integer replyNo) throws Exception;
 }

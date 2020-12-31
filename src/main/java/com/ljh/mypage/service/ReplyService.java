@@ -7,9 +7,9 @@ import com.ljh.mypage.domain.ReplyVO;
 
 public interface ReplyService {
 	public List<ReplyVO> list(Integer articleNo) throws Exception;
-	public void create(ReplyVO replyVO) throws Exception;
+	public void addReply(ReplyVO replyVO) throws Exception;
 	public void update(ReplyVO replyVO) throws Exception;
-	public void delete(Integer replyNo) throws Exception;
-	public List<ReplyVO> listPaging(Integer articleNo, Criteria criteria) throws Exception; 
+	public void removeReply(Integer replyNo) throws Exception;
+	public List<ReplyVO> getRepliesPaging(Integer articleNo, Criteria criteria) throws Exception; 
 	public int countReplies(Integer articleNo) throws Exception;
 }

@@ -34,7 +34,7 @@ public class ReplyController {
 	public ResponseEntity<String> register(@RequestBody ReplyVO replyVO){
 		ResponseEntity<String> entity = null;
 		try {
-			replyService.create(replyVO);
+			replyService.addReply(replyVO);
 			entity = new ResponseEntity<String>("regSuccess", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class ReplyController {
 	}
 	
 	// Reply List.
-	@RequestMapping(value = "/all/{articleNo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/all/{articleNo}", method = RequestMethod.POST)
 	public ResponseEntity<List<ReplyVO>> list(@PathVariable("articleNo") Integer articleNo){
 		ResponseEntity<List<ReplyVO>> entity = null;
 		try {
@@ -76,7 +76,7 @@ public class ReplyController {
 	public ResponseEntity<String> delete(@PathVariable("replyNo") Integer replyNo){
 		ResponseEntity<String> entity = null;
 		try {
-			replyService.delete(replyNo);
+			replyService.removeReply(replyNo);
 			entity = new ResponseEntity<String>("delSuccess", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,13 +86,13 @@ public class ReplyController {
 	}
 	
 	// Reply Paging list.
-	@RequestMapping(value = "/{article_no}/{page}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> listPaging(@PathVariable("articleNo") Integer articleNo, @PathVariable("page") Integer page){
+	@RequestMapping(value = "/{articleNo}/{page}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> listPaging(@PathVariable("articleNo") Integer articleNo, @PathVariable("page") int page){
 		ResponseEntity<Map<String, Object>> entity = null;
 		try {
 			Criteria criteria = new Criteria();
 			criteria.setPage(page);
-			List<ReplyVO> replies = replyService.listPaging(articleNo, criteria);
+			List<ReplyVO> replies = replyService.getRepliesPaging(articleNo, criteria);
 			int repliesCount = replyService.countReplies(articleNo);
 			
 			PageMaker pageMaker = new PageMaker(); 
