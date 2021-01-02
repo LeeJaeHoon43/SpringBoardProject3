@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias type="com.ljh.mypage.domain.ArticleVO" alias="ArticleVO"/>
 		<typeAlias type="com.ljh.mypage.domain.ReplyVO" alias="ReplyVO"/>
+		<typeAlias type="com.ljh.mypage.domain.UserVO" alias="UserVO"/>
 	</typeAliases>
 </configuration>

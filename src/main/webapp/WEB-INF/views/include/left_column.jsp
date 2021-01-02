@@ -14,26 +14,40 @@
 	<div class="sidebar">
 		<!-- Sidebar user panel (optional) -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-			<div class="image">
-				<img src="${path}/dist/img/user2-160x160.jpg"
-					class="img-circle elevation-2" alt="User Image">
-			</div>
-			<div class="info">
-				<a href="#" class="d-block">Alexander Pierce</a>
-			</div>
+			<c:if test="${empty login}">
+				<div class="image">
+					<img src="${path}/dist/img/default-user-image.jpg"
+						class="img-circle elevation-2" alt="User Image">
+				</div>
+				<div class="info">
+					<%-- Status --%>
+					<a href="#"><i class="fa fa-circle text-danger"></i> Guest</a>
+				</div>
+			</c:if>
+			<c:if test="${not empty login}">
+				<div class="image">
+					<img src="${path}/dist/img/default-user-image.jpg"
+						class="img-circle elevation-2" alt="User Image">
+				</div>
+				<div class="info">
+					<%-- Status --%>
+					<a href="#"><i class="d-block"></i> ${login.userName}</a>
+				</div>
+			</c:if>
 		</div>
+
 
 		<!-- Sidebar Menu -->
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column"
 				data-widget="treeview" role="menu" data-accordion="false">
-				<li class="nav-item has-treeview menu-open">
-					<a href="#" class="nav-link active"> 
-						<i class="nav-icon fas fa-tachometer-alt"></i>
+				<li class="nav-item has-treeview menu-open"><a href="#"
+					class="nav-link active"> <i
+						class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
 							Basic CRUD Board<i class="right fas fa-angle-left"></i>
 						</p>
-					</a>
+				</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item"><a href="${path}/article/write"
 							class="nav-link active"> <i class="far fa-circle nav-icon"></i>
@@ -43,46 +57,43 @@
 							class="nav-link"> <i class="far fa-circle nav-icon"></i>
 								<p>List Page</p>
 						</a></li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview menu-open">
-					<a href="#" class="nav-link active"> 
-						<i class="nav-icon fas fa-tachometer-alt"></i>
+					</ul></li>
+				<li class="nav-item has-treeview menu-open"><a href="#"
+					class="nav-link active"> <i
+						class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
 							Paging CRUD Board<i class="right fas fa-angle-left"></i>
 						</p>
-					</a>
+				</a>
 					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="${path}/article/paging/write" class="nav-link active"> 
-							<i class="far fa-circle nav-icon"></i><p>Write Page</p>
+						<li class="nav-item"><a href="${path}/article/paging/write"
+							class="nav-link active"> <i class="far fa-circle nav-icon"></i>
+							<p>Write Page</p>
 						</a></li>
-						<li class="nav-item">
-							<a href="${path}/article/paging/list" class="nav-link"> 
-								<i class="far fa-circle nav-icon"></i><p>List Paging Page</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview menu-open">
-					<a href="#" class="nav-link active"> 
-						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<li class="nav-item"><a href="${path}/article/paging/list"
+							class="nav-link"> <i class="far fa-circle nav-icon"></i>
+							<p>List Paging Page</p>
+						</a></li>
+					</ul></li>
+				<li class="nav-item has-treeview menu-open"><a href="#"
+					class="nav-link active"> <i
+						class="nav-icon fas fa-tachometer-alt"></i>
 						<p>
 							Paging Search Board<i class="right fas fa-angle-left"></i>
 						</p>
-					</a>
+				</a>
 					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="${path}/article/paging/search/write" class="nav-link active"> 
-							<i class="far fa-circle nav-icon"></i><p>Write Page</p>
+						<li class="nav-item"><a
+							href="${path}/article/paging/search/write"
+							class="nav-link active"> <i class="far fa-circle nav-icon"></i>
+							<p>Write Page</p>
 						</a></li>
-						<li class="nav-item">
-							<a href="${path}/article/paging/search/list" class="nav-link"> 
-								<i class="far fa-circle nav-icon"></i><p>List Paging Search Page</p>
-							</a>
-						</li>
-					</ul>
-				</li>
+						<li class="nav-item"><a
+							href="${path}/article/paging/search/list" class="nav-link"> <i
+								class="far fa-circle nav-icon"></i>
+							<p>List Paging Search Page</p>
+						</a></li>
+					</ul></li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
