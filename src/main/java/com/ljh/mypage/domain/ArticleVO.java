@@ -1,5 +1,6 @@
 package com.ljh.mypage.domain;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class ArticleVO {
@@ -10,6 +11,8 @@ public class ArticleVO {
 	private Date regDate; 
 	private int viewCnt;
 	private int replyCnt;
+	private String[] files;
+	private int fileCnt;
 	
 	public Integer getArticleNo() {
 		return articleNo;
@@ -53,9 +56,22 @@ public class ArticleVO {
 	public void setReplyCnt(int replyCnt) {
 		this.replyCnt = replyCnt;
 	}
+	public String[] getFiles() {
+		return files;
+	}
+	public void setFiles(String[] files) {
+		this.files = files;
+	}
+	public int getFileCnt() {
+		return fileCnt;
+	}
+	public void setFileCnt(int fileCnt) {
+		this.fileCnt = fileCnt;
+	}
 	@Override
 	public String toString() {
 		return "ArticleVO [articleNo=" + articleNo + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", replyCnt=" + replyCnt + "]";
+				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", replyCnt=" + replyCnt + ", files="
+				+ Arrays.toString(files) + ", fileCnt=" + fileCnt + "]";
 	}
 }

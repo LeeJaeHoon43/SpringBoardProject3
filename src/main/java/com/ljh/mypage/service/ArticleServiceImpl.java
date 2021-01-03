@@ -12,20 +12,35 @@ import com.ljh.mypage.commons.paging.Criteria;
 import com.ljh.mypage.commons.paging.SearchCriteria;
 import com.ljh.mypage.domain.ArticleVO;
 import com.ljh.mypage.persistence.ArticleDAO;
+import com.ljh.mypage.persistence.ArticleFileDAO;
 
 @Service
 public class ArticleServiceImpl implements ArticleService{
 	
 	private final ArticleDAO articleDAO;
 	
+	private final ArticleFileDAO articleFileDAO;
+	
 	@Inject
-	public ArticleServiceImpl(ArticleDAO articleDAO) {
+	public ArticleServiceImpl(ArticleDAO articleDAO, ArticleFileDAO articleFileDAO) {
 		this.articleDAO = articleDAO;
+		this.articleFileDAO = articleFileDAO;
 	} 
 
 	@Override
 	public void create(ArticleVO articleVO) throws Exception {
+		String[] files = articleVO.getFiles();
+		if (files == null) {
+			articleDAO.create(articleVO);
+			return;
+		}
+		articleVO.setFileCnt(files.length);
+		
 		articleDAO.create(articleVO);
+		Integer articleNo = articleVO.getArticleNo();
+		for (String fileName : files) {
+			articleFileDAO.addAttach(fileName, articleNo);
+		}
 	}
 
 	@Transactional(isolation = Isolation.READ_COMMITTED)
@@ -37,11 +52,24 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Override
 	public void update(ArticleVO articleVO) throws Exception {
-		articleDAO.update(articleVO);
+		int articleNo = articleVO.getArticleNo(); 
+		articleFileDAO.deleteAllAttach(articleNo); 
+		String[] files = articleVO.getFiles(); 
+		if (files == null) { 
+			articleVO.setFileCnt(0); 
+			articleDAO.update(articleVO); 
+			return; 
+		} 
+		articleVO.setFileCnt(files.length); 
+		articleDAO.update(articleVO); 
+		for (String fileName : files) { 
+			articleFileDAO.replaceAttach(fileName, articleNo); 
+		}
 	}
 
 	@Override
 	public void delete(Integer articleNo) throws Exception {
+		articleFileDAO.deleteAllAttach(articleNo);
 		articleDAO.delete(articleNo);
 	}
 

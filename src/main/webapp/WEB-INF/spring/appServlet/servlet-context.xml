@@ -51,6 +51,10 @@
 		</interceptor>
 	</interceptors>
 	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
+	
 	<context:component-scan base-package="com.ljh.mypage" />
 
 </beans:beans>
