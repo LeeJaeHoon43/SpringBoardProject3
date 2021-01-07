@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserVO login(LoginDTO loginDTO) throws Exception {
+		userDAO.updateLoginDate(loginDTO.getUserId());
 		return userDAO.login(loginDTO);
 	}
 
@@ -39,5 +40,25 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserVO checkLoginBefore(String value) throws Exception {
 		return userDAO.checkUserWithSessionKey(value);
+	}
+
+	@Override
+	public void updateUser(UserVO userVO) throws Exception {
+		userDAO.updateUser(userVO);
+	}
+
+	@Override
+	public UserVO getUser(String uid) throws Exception {
+		return userDAO.getUser(uid);
+	}
+
+	@Override
+	public void updatePw(UserVO userVO) throws Exception {
+		userDAO.updatePw(userVO);
+	}
+
+	@Override
+	public void updateUimage(String uid, String uimage) throws Exception {
+		userDAO.updateUimage(uid, uimage);
 	}
 }

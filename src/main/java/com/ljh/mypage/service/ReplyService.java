@@ -12,4 +12,5 @@ public interface ReplyService {
 	public void removeReply(Integer replyNo) throws Exception;
 	public List<ReplyVO> getRepliesPaging(Integer articleNo, Criteria criteria) throws Exception; 
 	public int countReplies(Integer articleNo) throws Exception;
+	public List<ReplyVO> userReplies(String userId) throws Exception;
 }

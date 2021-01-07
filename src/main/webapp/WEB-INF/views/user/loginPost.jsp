@@ -11,7 +11,7 @@
 <body>
 	<script type="text/javascript">
 		alert("아이디와 비밀번호를 확인해주세요.");
-		self.location = "${path}/user/login";
+		self.location = "/user/login";
 	</script>
 </body>
 </html>

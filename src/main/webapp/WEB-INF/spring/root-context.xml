@@ -37,6 +37,12 @@
 		<constructor-arg value="C:\\myProject\\myProject\\SpringBoardProject3\\src\\main\\webapp\\resources\\upload"></constructor-arg>
 	</bean>
 	
+	<!--프로필 이미지 파일 저장 경로 설정--> 
+	<bean id="uimagePath" class="java.lang.String"> 
+		<constructor-arg value="C:\\myProject\\myProject\\SpringBoardProject3\\src\\main\\webapp\\resources\\dist\\img\\profile"/> 
+	</bean>
+
+	
 	<tx:annotation-driven/>
 
 	

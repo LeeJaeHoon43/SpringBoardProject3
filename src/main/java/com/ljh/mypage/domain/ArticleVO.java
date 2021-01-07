@@ -13,6 +13,8 @@ public class ArticleVO {
 	private int replyCnt;
 	private String[] files;
 	private int fileCnt;
+	private String writerImg; 
+	private UserVO userVO;
 	
 	public Integer getArticleNo() {
 		return articleNo;
@@ -68,10 +70,25 @@ public class ArticleVO {
 	public void setFileCnt(int fileCnt) {
 		this.fileCnt = fileCnt;
 	}
+	
+	public String getWriterImg() {
+		return writerImg;
+	}
+	public void setWriterImg(String writerImg, UserVO userVO) {
+		writerImg = userVO.getUserImg();
+		this.writerImg = writerImg;
+	}
+	public UserVO getUserVO() {
+		return userVO;
+	}
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
+	}
 	@Override
 	public String toString() {
 		return "ArticleVO [articleNo=" + articleNo + ", title=" + title + ", content=" + content + ", writer=" + writer
 				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", replyCnt=" + replyCnt + ", files="
-				+ Arrays.toString(files) + ", fileCnt=" + fileCnt + "]";
+				+ Arrays.toString(files) + ", fileCnt=" + fileCnt + ", writerImg=" + writerImg + ", userVO=" + userVO
+				+ "]";
 	}
 }

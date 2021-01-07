@@ -18,4 +18,8 @@ public interface ArticleDAO {
 	public int countSearchedArticles(SearchCriteria searchCriteria) throws Exception;
 	public void updateReplyCnt(Integer articleNo, int amount) throws Exception;
 	public void updateViewCnt(Integer articleNo) throws Exception;
+	// 회원이 작성한 게시글 목록.
+	public List<ArticleVO> userBoardList(String userId) throws Exception; 
+	// 회원 프로필 사진 수정.
+	public void updateWriterImg(ArticleVO articleVO) throws Exception;
 }

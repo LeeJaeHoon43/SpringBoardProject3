@@ -16,4 +16,5 @@ public interface ArticleService {
 	public int countArticles(Criteria criteria) throws Exception;
 	public List<ArticleVO> listSearch(SearchCriteria searchCriteria) throws Exception; 
 	public int countSearchedArticles(SearchCriteria searchCriteria) throws Exception;
+	public List<ArticleVO> userBoardList(String uid) throws Exception;
 }

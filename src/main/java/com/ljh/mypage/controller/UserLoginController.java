@@ -37,7 +37,7 @@ public class UserLoginController {
 	}
 	
 	// 로그인 처리.
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginPost", method = RequestMethod.POST)
 	public void loginDTO(LoginDTO loginDTO, HttpSession httpSession, Model model) throws Exception{
 		UserVO userVO = userService.login(loginDTO);
 		

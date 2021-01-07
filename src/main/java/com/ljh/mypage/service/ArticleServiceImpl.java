@@ -32,11 +32,13 @@ public class ArticleServiceImpl implements ArticleService{
 		String[] files = articleVO.getFiles();
 		if (files == null) {
 			articleDAO.create(articleVO);
+			articleDAO.updateWriterImg(articleVO);
 			return;
 		}
 		articleVO.setFileCnt(files.length);
 		
 		articleDAO.create(articleVO);
+		articleDAO.updateWriterImg(articleVO);
 		Integer articleNo = articleVO.getArticleNo();
 		for (String fileName : files) {
 			articleFileDAO.addAttach(fileName, articleNo);
@@ -96,5 +98,10 @@ public class ArticleServiceImpl implements ArticleService{
 	@Override
 	public int countSearchedArticles(SearchCriteria searchCriteria) throws Exception {
 		return articleDAO.countSearchedArticles(searchCriteria);
+	}
+
+	@Override
+	public List<ArticleVO> userBoardList(String uid) throws Exception {
+		return articleDAO.userBoardList(uid);
 	}
 }

@@ -40,15 +40,7 @@
 	</delete>
 	
 	<select id="listPaging" resultMap="ReplyResultMap">
-		SELECT
-			reply_no
-			, article_no
-			, reply_text
-			, reply_writer
-			, reg_date
-			, update_date
-			, user_img
-		FROM tb_reply
+		SELECT * FROM tb_reply
 		INNER JOIN tb_user ON user_id = reply_writer
 		WHERE article_no = #{articleNo}
 		ORDER BY reply_no DESC
@@ -69,6 +61,17 @@
 		WHERE reply_no = #{replyNo}
 	</select>
 	
+	<select id="userReplies" resultMap="ReplyResultMap">
+		SELECT 
+			r.reply_text, 
+			r.reg_date, 
+			a.title, 
+			a.article_no 
+		FROM tb_reply r 
+		LEFT OUTER JOIN tb_article a ON a.article_no = r.article_no 
+		WHERE reply_writer = #{userId}
+	</select>
+	
 	<resultMap id="ReplyResultMap" type="ReplyVO">
 		<id property="replyNo" column="reply_no"/> 
 		<result property="articleNo" column="article_no"/> 
@@ -76,7 +79,8 @@
 		<result property="replyWriter" column="reply_writer" /> 
 		<result property="regDate" column="reg_date" /> 
 		<result property="updateDate" column="update_date" /> 
-		<association property="userVO" resultMap="userVOResultMap"/>
+		<association property="userVO" resultMap="UserVOResultMap"/>
+		<association property="articleVO" resultMap="ArticleResultMap"/>
 	</resultMap>
 	
 	<resultMap id="ArticleResultMap" type="ArticleVO">
@@ -85,19 +89,22 @@
 		<result property="content" column="content" /> 
 		<result property="writer" column="writer" /> 
 		<result property="regDate" column="regdate" /> 
-		<result property="viewCnt" column="viewcnt" /> 
+		<result property="viewCnt" column="viewcnt" />
+		<result property="fileCnt" column="file_cnt" />
+		<result property="writerImg" column="writerImg" /> 
+		<association property="userVO" resultMap="UserVOResultMap"/>
 	</resultMap>
 	
-	<resultMap id="userVOResultMap" type="UserVO"> 
+	<resultMap id="UserVOResultMap" type="UserVO"> 
 		<id property="userId" column="user_id"/> 
 		<result property="userPw" column="user_pw"/> 
 		<result property="userName" column="user_name"/> 
 		<result property="userEmail" column="user_email"/> 
 		<result property="userJoinDate" column="user_join_date"/> 
 		<result property="userLoginDate" column="user_login_date"/> 
-		<result property="userSignature" column="user_signature"/> 
+		<result property="userSignature" column="user_signature"/>
 		<result property="userImg" column="user_img"/> 
-		<result property="userPoint" column="user_point"/> 
+		<result property="userPoint" column="user_point"/>
 	</resultMap>
 
 </mapper>

@@ -82,4 +82,14 @@ public class ArticleDAOImpl implements ArticleDAO{
 	public void updateViewCnt(Integer articleNo) throws Exception {
 		sqlSession.update(NAMESPACE + ".updateViewCnt", articleNo);
 	}
+
+	@Override
+	public List<ArticleVO> userBoardList(String userId) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".userBoardList", userId);
+	}
+
+	@Override
+	public void updateWriterImg(ArticleVO articleVO) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateWriterImg", articleVO);
+	}
 }

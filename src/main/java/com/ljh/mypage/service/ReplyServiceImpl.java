@@ -58,6 +58,9 @@ public class ReplyServiceImpl implements ReplyService{
 	public int countReplies(Integer articleNo) throws Exception {
 		return replyDAO.countReplies(articleNo);
 	}
-	
-	
+
+	@Override
+	public List<ReplyVO> userReplies(String userId) throws Exception {
+		return replyDAO.userReplies(userId);
+	}
 }
