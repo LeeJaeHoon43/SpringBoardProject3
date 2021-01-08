@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ljh.mypage.mappers.reply.replyMapper">
+
 	<select id="list" resultMap="ReplyResultMap">
 		SELECT
 			reply_no
@@ -73,15 +74,14 @@
 	</select>
 	
 	<resultMap id="ReplyResultMap" type="ReplyVO">
-		<id property="replyNo" column="reply_no"/> 
-		<result property="articleNo" column="article_no"/> 
-		<result property="replyText" column="reply_text" /> 
-		<result property="replyWriter" column="reply_writer" /> 
-		<result property="regDate" column="reg_date" /> 
-		<result property="updateDate" column="update_date" /> 
-		<association property="userVO" resultMap="UserVOResultMap"/>
-		<association property="articleVO" resultMap="ArticleResultMap"/>
-	</resultMap>
+        <id property="replyNo" column="reply_no"/>
+        <result property="articleNo" column="article_no"/>
+        <result property="replyText" column="reply_text"/>
+        <result property="replyWriter" column="reply_writer"/>
+        <result property="regDate" column="reg_date"/>
+        <result property="updateDate" column="update_date"/>
+        <association property="userVO" resultMap="UserVOResultMap"/>
+    </resultMap>
 	
 	<resultMap id="ArticleResultMap" type="ArticleVO">
 		<id property="articleNo" column="article_no"/> 
